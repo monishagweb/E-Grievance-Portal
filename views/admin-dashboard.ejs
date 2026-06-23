@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">AD</div>
+        <div>
+          <div class="site-title">Admin Dashboard</div>
+          <div style="font-size:13px;color:var(--muted)">Manage complaints</div>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="/logout" class="btn secondary">Logout</a>
+      </div>
+    </header>
+
+    <!-- Grid layout: sidebar + main content -->
+    <div class="grid-3">
+      
+      <!-- Sidebar -->
+      <aside class="card sidebar">
+        <a href="/admin/dashboard" class="menu-item active">All Complaints</a>
+        <a href="/admin/dashboard?filter=pending" class="menu-item">Pending</a>
+        <a href="/admin/dashboard?filter=escalated" class="menu-item">Escalated</a>
+        <a href="/admin/analytics" class="menu-item">Analytics</a>
+      </aside>
+
+      <!-- Main content -->
+      <section class="card">
+        <h3>All Complaints</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Ref</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Student</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% complaints.forEach(c => { %>
+              <tr>
+                <td><%= c._id %></td>
+                <td><%= c.title %></td>
+                <td><%= c.category %></td>
+                <td><%= c.anonymous ? "Anonymous" : c.student?.name %></td>
+                <td>
+                  <% if (c.status === 'Resolved') { %>
+                    <span class="badge resolved"><%= c.status %></span>
+                  <% } else if (c.status === 'In Process') { %>
+                    <span class="badge inprocess"><%= c.status %></span>
+                  <% } else { %>
+                    <span class="badge pending"><%= c.status %></span>
+                  <% } %>
+                </td>
+                <td>
+                  <form method="POST" action="/admin/respond" style="display:inline">
+                    <input type="hidden" name="id" value="<%= c._id %>">
+                    <button class="btn" type="submit">Resolve</button>
+                  </form>
+                  <form method="POST" action="/admin/escalate" style="display:inline;margin-left:6px">
+                    <input type="hidden" name="id" value="<%= c._id %>">
+                    <button class="btn secondary" type="submit">Escalate</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
+

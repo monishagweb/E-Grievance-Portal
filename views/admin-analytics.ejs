@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Analytics</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">AD</div>
+        <div>
+          <div class="site-title">Admin Analytics</div>
+          <div style="font-size:13px;color:var(--muted)">Complaint Reports</div>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="/admin/dashboard" class="btn secondary">Back</a>
+        <a href="/logout" class="btn secondary">Logout</a>
+      </div>
+    </header>
+
+    <div class="card">
+      <h3>Complaints by Status</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% statusCounts.forEach(s => { %>
+            <tr>
+              <td><%= s._id %></td>
+              <td><%= s.count %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Complaints by Category</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categoryCounts.forEach(c => { %>
+            <tr>
+              <td><%= c._id %></td>
+              <td><%= c.count %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

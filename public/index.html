@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>E-Grievance Portal — Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">EG</div>
+        <div>
+          <div class="site-title">E-Grievance Portal</div>
+          <div style="font-size:13px;color:var(--muted)">For students — anonymous & secure</div>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="register.html" class="btn secondary">Register</a>
+      </div>
+    </header>
+
+    <main class="card" style="max-width:760px;margin:auto">
+      <h2 style="margin-top:0">Student Login</h2>
+      <form method="POST" action="/login">
+        <div class="form-grid">
+          <div>
+            <div class="form-row">
+              <label for="email">Email / Roll Number</label>
+              <input id="email" name="email" type="text" placeholder="your.email@college.edu" required>
+            </div>
+            <div class="form-row">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" placeholder="••••••••" required>
+            </div>
+            <div style="margin-top:12px">
+              <button class="btn" type="submit">Login</button>
+              <a href="student-dashboard.html" style="margin-left:10px;color:var(--muted);text-decoration:none;font-weight:600">Demo (Guest)</a>
+            </div>
+          </div>
+
+          <div style="border-left:1px dashed #eef2ff;padding-left:16px">
+            <h4 style="margin:0 0 8px 0">Why use this portal?</h4>
+            <p style="margin:0;color:var(--muted)">Submit complaints anonymously, track status, get timely updates and institutional analytics for better governance.</p>
+            <ul style="margin-top:12px;color:var(--muted)">
+              <li>Anonymous submission</li>
+              <li>Admin & Grievance cell workflow</li>
+              <li>Status tracking & feedback</li>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
